@@ -8,11 +8,12 @@ namespace WebApplication1.Pages.Books
     public class CreateBookModel : PageModel
     {
         public string ResultMessage="";
+        public int AlertCode = 1;
         public void OnGet()
         {
         }
 
-        public async  void OnPost() {
+        public   void OnPost() {
             
                 SqlConnection connection = new SqlConnection("Data Source=5CG9410FHX;Initial Catalog=LMS_DB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
                 connection.Open();
@@ -33,14 +34,15 @@ namespace WebApplication1.Pages.Books
                 try
                 {
                     SqlCommand command = new SqlCommand(query, connection);
-                    await command.ExecuteNonQueryAsync();
+                     command.ExecuteNonQuery();
+                ResultMessage = "data inserted sucessfully!";
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
                     ResultMessage = ex.Message;
+                    AlertCode = 0;
                 }
-                ResultMessage = "data inserted sucessfully";
                 connection.Close();
             
             
