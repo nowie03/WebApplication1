@@ -1,0 +1,37 @@
+﻿@page
+@model WebApplication1.Pages.Books.IndexModel
+@{
+}
+
+
+<br >
+<div>>
+    <a href="/Books/CreateBook">create book</a>
+</div>
+<div>
+<h1>Books List</h1>
+<table class='table'>
+    <thead>
+        <tr>
+            <th>code</th>
+            <th>name</th>
+            <th>author</th>
+            <th>publication</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            @foreach(var book in Model.BooksList){
+                <tr>
+                    <td>@book.Code</td>
+                    <td>@book.Name</td>
+                    <td>@book.Author</td>
+                    <td>@book.Publication</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+</div>
+
+
